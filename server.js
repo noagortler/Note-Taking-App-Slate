@@ -4,14 +4,16 @@ const mongoose = require("mongoose");
 const app = express();
 const PORT = 3000;
 
+
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// temporary test route
-app.get("/", (req, res) => {
-  res.send("Slate is running!");
-});
+
+// auth routes
+const authRoutes = require("./routes/authRoutes");
+app.use("/", authRoutes);
+
 
 // connect to MongoDB then start the server
 const MONGODB_URI = process.env.MONGODB_URI;
