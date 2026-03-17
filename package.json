@@ -1,0 +1,29 @@
+{
+  "name": "slate",
+  "version": "1.0.0",
+  "description": "Slate is my midterm project featuring a full stack note taking app where users can create an account and manage their own notes. I'll be building it with Node.js, Express, MongoDB and EJS for the front end templating.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noagortler/Note-Taking-App-Slate.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/noagortler/Note-Taking-App-Slate/issues"
+  },
+  "homepage": "https://github.com/noagortler/Note-Taking-App-Slate#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^17.3.1",
+    "ejs": "^5.0.1",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "mongoose": "^9.3.0"
+  }
+}
