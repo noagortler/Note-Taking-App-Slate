@@ -4,7 +4,8 @@
   "description": "Slate is my midterm project featuring a full stack note taking app where users can create an account and manage their own notes. I'll be building it with Node.js, Express, MongoDB and EJS for the front end templating.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +26,8 @@
     "express": "^5.2.1",
     "express-session": "^1.19.0",
     "mongoose": "^9.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }
