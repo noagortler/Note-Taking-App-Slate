@@ -14,6 +14,9 @@ app.use(express.urlencoded({ extended: false }));
 const authRoutes = require("./routes/authRoutes");
 app.use("/", authRoutes);
 
+// note routes
+const noteRoutes = require("./routes/noteRoutes");
+app.use("/notes", noteRoutes);
 
 // connect to MongoDB then start the server
 const MONGODB_URI = process.env.MONGODB_URI;
