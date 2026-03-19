@@ -7,16 +7,20 @@ const PORT = 3000;
 
 // middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
+app.set("view engine", "ejs");
+app.use(express.static("assets"));
 
 
 // auth routes
 const authRoutes = require("./routes/authRoutes");
 app.use("/", authRoutes);
 
+
 // note routes
 const noteRoutes = require("./routes/noteRoutes");
 app.use("/notes", noteRoutes);
+
 
 // connect to MongoDB then start the server
 const MONGODB_URI = process.env.MONGODB_URI;

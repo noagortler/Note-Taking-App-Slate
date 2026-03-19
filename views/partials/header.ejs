@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slate</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+
+<nav>
+    <a href="/notes" class="nav-logo">Slate</a>
+    <div class="nav-links">
+        <span>Hi, <%= user.username %></span>
+        <form action="/logout" method="POST">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+</nav>
