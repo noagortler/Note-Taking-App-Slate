@@ -38,7 +38,7 @@ exports.getAllNotes = async (req, res) => {
             }))
         };
 
-        return res.status(200).json(response);
+        return res.render("dashboard", {notes: response.notes, error: null, user: null});
 
     } catch (err) {
         return res.status(500).json({
