@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 
 // GET /register
 exports.showRegister = (req, res) => {
-    res.send("register page");
+    res.render("register", {error: null, user: null});
 };
 
 // POST /register
