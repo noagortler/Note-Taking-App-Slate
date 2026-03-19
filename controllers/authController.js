@@ -65,7 +65,7 @@ exports.register = async (req, res) => {
 
 // GET /login
 exports.showLogin = (req, res) => {
-    res.send("login page");
+    res.render("index",  {error: null, user: null});
 };
 
 // POST /login

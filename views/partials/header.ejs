@@ -12,9 +12,11 @@
 <nav>
     <a href="/notes" class="nav-logo">Slate</a>
     <div class="nav-links">
-        <span>Hi, <%= user.username %></span>
-        <form action="/logout" method="POST">
-            <button type="submit">Logout</button>
-        </form>
+        <% if (user) { %>
+            <span>Hi, <%= user.username %></span>
+            <form action="/logout" method="POST">
+                <button type="submit">Logout</button>
+            </form>
+        <% } %>
     </div>
 </nav>
