@@ -136,6 +136,42 @@ exports.createNote = async (req, res) => {
     }
 };
 
+// GET /notes/:id/edit
+exports.getEditNote = async (req, res) => {
+    try {
+        const {id} = req.params;
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({
+                message: "Invalid note ID."
+            });
+        }
+
+        const note = await Note.findById(id);
+
+        if (!note) {
+            return res.status(404).json({
+                message: "Note not found."
+            });
+        }
+
+        return res.render("edit", {
+            note: {
+                id: note._id,
+                title: note.title,
+                content: note.content,
+                category: note.category
+            },
+            error: null, user: null});
+
+    } catch (err) {
+        return res.status(500).json({
+            message: "Error retrieving note",
+            error: err.message
+        });
+    }
+};
+
 // PUT /notes/:id
 
 exports.updateNote = async (req, res) => {

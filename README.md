@@ -26,7 +26,6 @@ slate/
     controllers/     = request logic
     models/          = database schemas
     routes/          = URL route definitions
-    app.js           = express app setup
     server.js        = server JS file
     .env             = environment variables
 ```
@@ -39,8 +38,8 @@ This will be updated as I go.
 | Action | Route       | What it does                  |
 |--------|-------------|-------------------------------|
 | GET    | /register   | Shows the registration page   |
-| POST   | /register   | Creates a new user account    |
 | GET    | /login      | Shows the login page          |
+| POST   | /register   | Creates a new user account    |
 | POST   | /login      | Logs the user in              |
 | POST   | /logout     | Logs the user out             |
 
@@ -50,8 +49,9 @@ This will be updated as I go.
 |--------|--------------------|---------------------------------------|
 | GET    | /notes             | Shows all user's notes                |
 | GET    | /notes?category=   | Shows notes filtered by category      |
-| POST   | /notes             | Creates a new note                    |
 | GET    | /notes/:id         | Gets one note by its ID               |
+| GET    | /notes/:id/edit    | Shows the edit page for a note        |
+| POST   | /notes             | Creates a new note                    |
 | PUT    | /notes/:id         | Updates a note                        |
 | DELETE | /notes/:id         | Deletes a note                        |
 
@@ -76,11 +76,11 @@ Success: redirects to `/notes`
 Errors:
 
 ```json
-{ "error": "All fields are required." }
-{ "error": "Username must be at least 3 characters." }
-{ "error": "Password must be at least 6 characters." }
-{ "error": "That username is already taken." }
-{ "error": "That email is already registered." }
+{ "message": "All fields are required." }
+{ "message": "Username must be at least 3 characters." }
+{ "message": "Password must be at least 6 characters." }
+{ "message": "That username is already taken." }
+{ "message": "That email is already registered." }
 ```
 
 ### Login
@@ -101,8 +101,8 @@ Success: redirects to `/notes`
 Errors:
 
 ```json
-{ "error": "All fields are required." }
-{ "error": "Invalid username or password." }
+{ "message": "All fields are required." }
+{ "message": "Invalid username or password." }
 ```
 
 
@@ -121,42 +121,15 @@ No request body. Ends the session and redirects to `/login`.
 No request body. Loads the dashboard with all notes for the logged in user.
 
 
-**GET /notes?category=to-do**
+**GET /notes?category=To-Do**
 
-Same as GET /notes but filters by category. Category must be one of: `notes`, `to-do`, `list`.
+Same as GET /notes but filters by category. Category must be one of: `Notes`, `To-do`, `List`.
 
 Errors:
 
 ```json
 { "error": "Invalid category." }
 ```
-
-
-**POST /notes**
-
-Request body:
-
-```json
-{
-  "title": "House Chores",
-  "content": "1. Laundry 2. Vaccuum 3. Dishes",
-  "category": "to-do"
-}
-```
-
-Success: redirects to `/notes`
-
-Errors:
-
-```json
-{ "error": "Title and content are required." }
-{ "error": "Title cannot be longer than 100 characters." }
-{ "error": "Content cannot be longer than 10000 characters." }
-{ "error": "Invalid category. Must be one of: notes, to-do, list." }
-```
-
-
-### Notes/:id
 
 **GET /notes/:id**
 
@@ -169,7 +142,7 @@ Success response:
   "_id": 1,
   "title": "House Chores",
   "content": "1. Laundry 2. Vaccuum 3. Dishes",
-  "category": "to-do",
+  "category": "To-Do",
   "createdAt": "2026-01-15",
   "updatedAt": "2026-01-15"
 }
@@ -178,10 +151,43 @@ Success response:
 Errors:
 
 ```json
-{ "error": "Note not found." }
-{ "error": "You are not authorized to view this note." }
+{ "message": "Note not found." }
+{ "message": "You are not authorized to view this note." }
 ```
 
+**GET /notes/:id/edit**
+
+No request body, loads the edit page with the note's existing data.
+
+Errors:
+
+```json
+{ "message": "Note not found." }
+{ "message": "Invalid note ID." }
+```
+
+**POST /notes**
+
+Request body:
+
+```json
+{
+  "title": "House Chores",
+  "content": "1. Laundry 2. Vaccuum 3. Dishes",
+  "category": "To-Do"
+}
+```
+
+Success: redirects to `/notes`
+
+Errors:
+
+```json
+{ "message": "Title and content are required." }
+{ "message": "Title cannot be longer than 100 characters." }
+{ "message": "Content cannot be longer than 10000 characters." }
+{ "message": "Invalid category. Must be one of: Notes, To-Do, List." }
+```
 
 **PUT /notes/:id**
 
@@ -191,7 +197,7 @@ Request body:
 {
   "title": "House Chores",
   "content": "1. Laundry 2. Vaccuum 3. Dishes 4. Dust (updated)",
-  "category": "to-do"
+  "category": "To-Do"
 }
 ```
 
@@ -213,14 +219,12 @@ Success response:
 Errors:
 
 ```json
-{ "error": "Note not found." }
-{ "error": "You are not authorized to edit this note." }
-{ "error": "Title and content are required." }
-{ "error": "Title cannot be longer than 100 characters." }
-{ "error": "Content cannot be longer than 10000 characters." }
+{ "message": "Note not found." }
+{ "message": "You are not authorized to edit this note." }
+{ "message": "Title and content are required." }
+{ "message": "Title cannot be longer than 100 characters." }
+{ "message": "Content cannot be longer than 10000 characters." }
 ```
-
-
 
 **DELETE /notes/:id**
 
@@ -238,8 +242,8 @@ Success response:
 Errors:
 
 ```json
-{ "error": "Note not found." }
-{ "error": "You are not authorized to delete this note." }
+{ "message": "Note not found." }
+{ "message": "You are not authorized to delete this note." }
 ```
 
 
