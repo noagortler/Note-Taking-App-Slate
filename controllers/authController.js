@@ -10,17 +10,11 @@ exports.showRegister = (req, res) => {
 // POST /register
 exports.register = async (req, res) => {
     try {
-        const { username, email, password } = req.body;
+        const {firstName, lastName, email, password} = req.body;
 
-        if (!username || !email || !password) {
+        if (!firstName || !lastName || !email || !password) {
             return res.status(400).json({
                 message: "All fields are required."
-            });
-        }
-
-        if (username.length < 3) {
-            return res.status(400).json({
-                message: "Username must be at least 3 characters."
             });
         }
 
@@ -30,17 +24,9 @@ exports.register = async (req, res) => {
             });
         }
 
-        const existingUser = await User.findOne({username});
-
+        const existingUser = await User.findOne({email});
+        
         if (existingUser) {
-            return res.status(400).json({
-                message: "That username is already taken."
-            });
-        }
-
-        const existingEmail = await User.findOne({email});
-
-        if (existingEmail) {
             return res.status(400).json({
                 message: "That email is already registered."
             });
@@ -49,7 +35,10 @@ exports.register = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const newUser = new User({
-            username, email, password: hashedPassword
+            firstName: firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase(),
+            lastName: lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase(),
+            email,
+            password: hashedPassword
         });
 
         await newUser.save();
@@ -58,53 +47,21 @@ exports.register = async (req, res) => {
 
     } catch (err) {
         return res.status(500).json({
-            message: "Error registering user", error: err.message
+            message: "Something went wrong. Please try again.",
+            error: err.message
         });
     }
 };
 
 // GET /login
 exports.showLogin = (req, res) => {
-    res.render("index",  {error: null, user: null});
-};
-
-// POST /login
-exports.login = async (req, res) => {
-    try {
-        const { username, password } = req.body;
-
-        if (!username || !password) {
-            return res.status(400).json({
-                message: "All fields are required."
-            });
-        }
-
-        const user = await User.findOne({username});
-
-        if (!user) {
-            return res.status(400).json({
-                message: "Invalid username or password."
-            });
-        }
-
-        const passwordMatch = await bcrypt.compare(password, user.password);
-
-        if (!passwordMatch) {
-            return res.status(400).json({
-                message: "Invalid username or password."
-            });
-        }
-
-        return res.redirect("/notes");
-
-    } catch (err) {
-        return res.status(500).json({
-            message: "Error logging in", error: err.message
-        });
-    }
+    res.render("index", {error: null, user: null});
 };
 
 // POST /logout
-exports.logout = (req, res) => {
-    return res.redirect("/login");
+exports.logout = (req, res, next) => {
+    req.logout((err) => {
+        if (err) return next(err);
+        return res.redirect("/login");
+    });
 };

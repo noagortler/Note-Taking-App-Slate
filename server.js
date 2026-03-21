@@ -1,6 +1,9 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const session = require("express-session");
+const passport = require("./config/passport");
+
 const app = express();
 const PORT = 3000;
 
@@ -10,6 +13,24 @@ app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.set("view engine", "ejs");
 app.use(express.static("assets"));
+
+// session
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        resave: false,
+        saveUninitialized: false,
+        cookie: {
+            httpOnly: true,
+            secure: false
+        }
+    })
+);
+
+
+// passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 // auth routes

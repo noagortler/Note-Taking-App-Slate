@@ -13,7 +13,7 @@
     <a href="/notes" class="nav-logo">Slate</a>
     <div class="nav-links">
         <% if (user) { %>
-            <span>Hi, <%= user.username %></span>
+            <span>Hi, <%= user.firstName %></span>
             <form action="/logout" method="POST">
                 <button type="submit">Logout</button>
             </form>
