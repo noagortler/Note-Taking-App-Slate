@@ -10,7 +10,7 @@ function formatDate(dateValue) {
 
 exports.getAllNotes = async (req, res) => {
     try {
-        const {category} = req.query;
+        const { category } = req.query;
         const validCategories = ["Notes", "To-Do", "List"];
 
         const filter = {};
@@ -25,7 +25,8 @@ exports.getAllNotes = async (req, res) => {
             filter.category = category;
         }
 
-        const notes = await Note.find(filter).sort({createdAt: -1});
+        filter.user = req.user.id;
+        const notes = await Note.find(filter).sort({ createdAt: -1 });
 
         const response = {
             notes: notes.map(note => ({
@@ -38,7 +39,7 @@ exports.getAllNotes = async (req, res) => {
             }))
         };
 
-        return res.render("dashboard", {notes: response.notes, error: null, user: null});
+        return res.render("dashboard", { notes: response.notes, error: null, user: req.user || null });
 
     } catch (err) {
         return res.status(500).json({
@@ -117,17 +118,11 @@ exports.createNote = async (req, res) => {
             });
         }
 
-        const newNote = new Note({title, content, category});
+        const newNote = new Note({ title, content, category, user: req.user.id });
         const savedNote = await newNote.save();
 
-        return res.status(201).json({
-            id: savedNote._id,
-            title: savedNote.title,
-            content: savedNote.content,
-            category: savedNote.category,
-            createdAt: formatDate(savedNote.createdAt),
-            updatedAt: formatDate(savedNote.updatedAt)
-        });
+        return res.redirect("/notes");
+
     } catch (err) {
         return res.status(400).json({
             message: "Error creating note",
@@ -139,7 +134,7 @@ exports.createNote = async (req, res) => {
 // GET /notes/:id/edit
 exports.getEditNote = async (req, res) => {
     try {
-        const {id} = req.params;
+        const { id } = req.params;
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json({
@@ -162,7 +157,10 @@ exports.getEditNote = async (req, res) => {
                 content: note.content,
                 category: note.category
             },
-            error: null, user: null});
+
+            error: null,
+            user: req.user || null
+        });
 
     } catch (err) {
         return res.status(500).json({
@@ -199,8 +197,9 @@ exports.updateNote = async (req, res) => {
         }
 
         if (content.length > 10000) {
-            return res.status(400).json({ message:
-                "Content cannot be longer than 10000 characters."
+            return res.status(400).json({
+                message:
+                    "Content cannot be longer than 10000 characters."
             });
         }
 
@@ -210,17 +209,25 @@ exports.updateNote = async (req, res) => {
             });
         }
 
+        const note = await Note.findById(id);
+
+        if (!note) {
+            return res.status(404).json({
+                message: "Note not found."
+            });
+        }
+
+        if (note.user.toString() !== req.user.id) {
+            return res.status(403).json({
+                message: "You are not authorized to edit this note."
+            });
+        }
+
         const updatedNote = await Note.findByIdAndUpdate(
             id,
             {title, content, category},
             {new: true, runValidators: true}
         );
-
-        if (!updatedNote) {
-            return res.status(404).json({
-                message: "Note not found."
-            });
-        }
 
         return res.status(200).json({
             message: "Note updated successfully",
@@ -232,6 +239,7 @@ exports.updateNote = async (req, res) => {
                 updatedAt: formatDate(updatedNote.updatedAt)
             }
         });
+        
     } catch (err) {
         return res.status(400).json({
             message: "Error updating note",
@@ -252,15 +260,24 @@ exports.deleteNote = async (req, res) => {
             });
         }
 
-        const deletedNote = await Note.findByIdAndDelete(id);
+        const note = await Note.findById(id);
 
-        if (!deletedNote) {
+        if (!note) {
             return res.status(404).json({
                 message: "Note not found."
             });
         }
 
+        if (note.user.toString() !== req.user.id) {
+            return res.status(403).json({
+                message: "You are not authorized to delete this note."
+            });
+        }
+
+        await Note.findByIdAndDelete(id);
+
         return res.status(204).send();
+
     } catch (err) {
         return res.status(500).json({
             message: "Error deleting note",

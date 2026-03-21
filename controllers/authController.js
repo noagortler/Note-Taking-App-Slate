@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 
 // GET /register
 exports.showRegister = (req, res) => {
-    res.render("register", {error: null, user: null});
+    res.render("register", {error: null, user: req.user || null});
 };
 
 // POST /register
@@ -55,7 +55,7 @@ exports.register = async (req, res) => {
 
 // GET /login
 exports.showLogin = (req, res) => {
-    res.render("index", {error: null, user: null});
+    res.render("index", {error: null, user: req.user || null});
 };
 
 // POST /logout
