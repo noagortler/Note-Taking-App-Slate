@@ -163,7 +163,9 @@ body.dark-mode .knob {
 }
 
 
-/* Auth Pages */
+
+
+/* --- Auth Pages --- */
 
 .auth-container {
     display: flex;
@@ -283,4 +285,330 @@ body.dark-mode .auth-container button {
 
 body.dark-mode .auth-container a {
     color: #F4F1DE;
+}
+
+
+
+/* --- Dashboard --- */
+
+
+.dashboard-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+}
+
+.dashboard-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Create Note Form */
+
+.create-note-form {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 3rem;
+}
+
+.form-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #3D405B;
+    padding: 1.2rem 2rem;
+}
+
+.form-header input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #F4F1DE;
+    font-size: 2rem;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 600;
+    width: 60%;
+}
+
+.form-header input::placeholder {
+    color: rgba(244, 241, 222, 0.6);
+}
+
+.form-header select {
+    background-color: #F4F1DE;
+    border: none;
+    border-radius: 999px;
+    padding: 0.6rem 1.4rem;
+    font-size: 1.4rem;
+    font-family: "DM Sans", sans-serif;
+    color: #3D405B;
+    cursor: pointer;
+    outline: none;
+}
+
+.form-body {
+    background-color: white;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-body textarea {
+    border: none;
+    outline: none;
+    resize: none;
+    font-size: 1.6rem;
+    font-family: "DM Sans", sans-serif;
+    color: #3D405B;
+    min-height: 20rem;
+    width: 100%;
+}
+
+.form-body textarea::placeholder {
+    color: rgba(61, 64, 91, 0.4);
+}
+
+.done-btn {
+    align-self: flex-end;
+    margin-top: 1.5rem;
+    padding: 0.8rem 2.4rem;
+    background-color: #3D405B;
+    color: #F4F1DE;
+    border: none;
+    border-radius: 999px;
+    font-size: 1.6rem;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.done-btn:hover {
+    background-color: #81B29A;
+}
+
+/* Category Filter */
+
+.category-filter {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 2.4rem;
+    flex-wrap: wrap;
+}
+
+.category-filter span {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.filter-btn {
+    padding: 0.6rem 2.4rem;
+    border-radius: 999px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-decoration: none;
+    background-color: transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.all-filter {
+    border: 2px solid #3D405B;
+    color: #3D405B;
+}
+
+.notes-filter {
+    border: 2px solid #81B29A;
+    color: #3D405B;
+}
+
+.todo-filter {
+    border: 2px solid #E07A5F;
+    color: #3D405B;
+}
+
+.list-filter {
+    border: 2px solid #F2CC8F;
+    color: #3D405B;
+}
+
+.all-filter:hover {
+    background-color: #3D405B;
+    color: #F4F1DE;
+}
+
+.notes-filter:hover {
+    background-color: #81B29A;
+    color: #3D405B;
+}
+
+.todo-filter:hover {
+    background-color: #E07A5F;
+    color: #3D405B;
+}
+
+.list-filter:hover {
+    background-color: #F2CC8F;
+    color: #3D405B;
+}
+
+
+/* Empty State */
+
+.empty-state {
+    text-align: center;
+    font-size: 1.8rem;
+    opacity: 0.6;
+    margin-top: 4rem;
+}
+
+/* Notes Grid */
+
+.notes-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+}
+
+/* Note Card */
+
+.note-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.note-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+
+.note-card-link {
+    text-decoration: none;
+    color: #3D405B;
+    flex: 1;
+}
+
+.note-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.4rem;
+}
+
+.note-card-header .note-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #3D405B;
+}
+
+.note-card-header .note-category {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #3D405B;
+}
+
+.notes {
+    background-color: #81B29A;
+}
+
+.todo {
+    background-color: #E07A5F;
+}
+
+.list {
+    background-color: #F2CC8F;
+}
+
+.note-card-body {
+    background-color: white;
+    padding: 1.4rem;
+    min-height: 18rem;
+}
+
+.note-card-body p {
+    font-size: 1.4rem;
+    color: #3D405B;
+}
+
+.note-card-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: white;
+}
+
+.edit-btn, .delete-btn {
+    padding: 0.5rem 0rem;
+    width: 30%;
+    border-radius: 999px;
+    border: none;
+    text-align: center;
+    font-size: 1.4rem;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: #3D405B;
+    color: #F4F1DE;
+    transition: background-color 0.2s ease;
+}
+
+.edit-btn:hover {
+    background-color: #81B29A;
+}
+
+.delete-btn:hover {
+    background-color: #E07A5F;
+}
+
+/* Dashboard - Dark Mode */
+
+body.dark-mode .form-body {
+    background-color: #2a2d3e;
+}
+
+body.dark-mode .form-body textarea {
+    background-color: #2a2d3e;
+    color: #F4F1DE;
+}
+
+body.dark-mode .note-card-body {
+    background-color: #2a2d3e;
+}
+
+body.dark-mode .note-card-body p {
+    color: #F4F1DE;
+}
+
+body.dark-mode .note-card-actions {
+    background-color: #2a2d3e;
+}
+
+body.dark-mode .all-filter {
+    border-color: #F4F1DE;
+    color: #F4F1DE;
+}
+
+body.dark-mode .notes-filter {
+    color: #F4F1DE;
+}
+
+body.dark-mode .todo-filter {
+    color: #F4F1DE;
+}
+
+body.dark-mode .list-filter {
+    color: #F4F1DE;
+}
+
+body.dark-mode .all-filter:hover {
+    background-color: #F4F1DE;
+    color: #3D405B;
 }
