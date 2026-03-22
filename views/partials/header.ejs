@@ -13,7 +13,11 @@
 </head>
 
 <body>
-
+    <script>
+        if (localStorage.getItem("darkMode") === "true") {
+            document.body.classList.add("dark-mode");
+        }
+    </script>
     <nav>
         <a href="/notes" class="nav-logo">
             <img src="/images/SlateLogo-Cream.png" alt="Slate" class="nav-logo-img">

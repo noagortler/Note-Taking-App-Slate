@@ -42,10 +42,10 @@
                 <!-- category filter -->
                 <div class="category-filter">
                     <span>Filter By:</span>
-                    <a href="/notes" class="filter-btn all-filter">All</a>
-                    <a href="/notes?category=Notes" class="filter-btn notes-filter">Notes</a>
-                    <a href="/notes?category=To-Do" class="filter-btn todo-filter">To-Do</a>
-                    <a href="/notes?category=List" class="filter-btn list-filter">List</a>
+                    <a href="/notes" class="filter-btn all-filter <%= !category ? 'active' : '' %>">All</a>
+                    <a href="/notes?category=Notes" class="filter-btn notes-filter <%= category === 'Notes' ? 'active' : '' %>">Notes</a>
+                    <a href="/notes?category=To-Do" class="filter-btn todo-filter <%= category === 'To-Do' ? 'active' : '' %>">To-Do</a>
+                    <a href="/notes?category=List" class="filter-btn list-filter <%= category === 'List' ? 'active' : '' %>">List</a>
                 </div>
 
                 <% if (notes.length === 0) { %>

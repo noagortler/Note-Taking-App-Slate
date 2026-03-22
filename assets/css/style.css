@@ -456,6 +456,28 @@ body.dark-mode .auth-container a {
 }
 
 
+/* Active Filter */
+
+.all-filter.active {
+    background-color: #3D405B;
+    color: #F4F1DE;
+}
+
+.notes-filter.active {
+    background-color: #81B29A;
+    color: #F4F1DE;
+}
+
+.todo-filter.active {
+    background-color: #E07A5F;
+    color: #F4F1DE;
+}
+
+.list-filter.active {
+    background-color: #F2CC8F;
+    color: #3D405B;
+}
+
 /* Empty State */
 
 .empty-state {
@@ -579,6 +601,10 @@ body.dark-mode .form-body textarea {
     color: #F4F1DE;
 }
 
+body.dark-mode .form-body textarea::placeholder {
+    color: rgba(244, 241, 222, 0.6);
+}
+
 body.dark-mode .note-card-body {
     background-color: #2a2d3e;
 }
@@ -609,6 +635,11 @@ body.dark-mode .list-filter {
 }
 
 body.dark-mode .all-filter:hover {
+    background-color: #F4F1DE;
+    color: #3D405B;
+}
+
+body.dark-mode .all-filter.active {
     background-color: #F4F1DE;
     color: #3D405B;
 }

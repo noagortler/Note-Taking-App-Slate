@@ -2,13 +2,22 @@
 const themeSwitch = document.getElementById("theme-switch");
 
 if (themeSwitch) {
+
+    if (localStorage.getItem("darkMode") === "true") {
+        document.body.classList.add("dark-mode");
+        themeSwitch.checked = true;
+        document.querySelector(".theme-text").textContent = "Dark";
+    }
+
     themeSwitch.addEventListener("change", function() {
         if (themeSwitch.checked) {
             document.body.classList.add("dark-mode");
             document.querySelector(".theme-text").textContent = "Dark";
+            localStorage.setItem("darkMode", "true");
         } else {
             document.body.classList.remove("dark-mode");
             document.querySelector(".theme-text").textContent = "Light";
+            localStorage.setItem("darkMode", "false")
         }
     });
 }

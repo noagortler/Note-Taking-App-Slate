@@ -39,7 +39,12 @@ exports.getAllNotes = async (req, res) => {
             }))
         };
 
-        return res.render("dashboard", { notes: response.notes, error: null, user: req.user || null });
+        return res.render("dashboard", {
+            notes: response.notes,
+            error: null,
+            user: req.user || null,
+            category: category || null
+        });
 
     } catch (err) {
         return res.status(500).json({
