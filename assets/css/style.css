@@ -1,0 +1,81 @@
+/* Base Styles */
+
+html {
+    font-size: 10px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background-color: #F4F1DE;
+    color: #3D405B;
+    font-size: 1.6rem;
+}
+
+/* Dark Mode */
+
+body.dark-mode {
+    background-color: #3D405B;
+    color: #F4F1DE;
+}
+
+/* Navbar */
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 3rem;
+    background-color: #3D405B;
+}
+
+.nav-logo {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #F4F1DE;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+}
+
+.nav-logo:hover {
+    color: #F2CC8F;
+    transition: color 0.2s ease;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-links span {
+    font-size: 1.4rem;
+    color: #F4F1DE;
+}
+
+.nav-links button {
+    background-color: transparent;
+    border: 2px solid #F4F1DE;
+    color: #F4F1DE;
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-links button:hover {
+    background-color: #F4F1DE;
+    color: #3D405B;
+}
+
+/* Navbar - Dark Mode */
+
+body.dark-mode nav {
+    background-color: #2a2d3e;
+}
