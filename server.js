@@ -59,3 +59,21 @@ mongoose
   .catch((err) => {
     console.log("MongoDB connection error", err);
   });
+
+
+// 404 handler
+app.use((req, res) => {
+    res.status(404).render("error", {
+      message: "Page not found.",
+      user: null
+    });
+});
+
+// error handler
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).render("error", {
+      message: "Something went wrong. Please try again.",
+      user: null
+    });
+});

@@ -643,3 +643,54 @@ body.dark-mode .all-filter.active {
     background-color: #F4F1DE;
     color: #3D405B;
 }
+
+/* --- Error Page --- */
+
+.error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 6rem);
+    text-align: center;
+    padding: 3rem;
+}
+
+.error-container h1 {
+    font-size: 6rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.error-container p {
+    font-size: 1.8rem;
+    opacity: 0.7;
+    margin-bottom: 3rem;
+}
+
+.error-link {
+    padding: 1rem 2.4rem;
+    background-color: #3D405B;
+    color: #F4F1DE;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.error-link:hover {
+    background-color: #81B29A;
+}
+
+/* Error Page - Dark Mode */
+
+body.dark-mode .error-link {
+    background-color: #F4F1DE;
+    color: #3D405B;
+}
+
+body.dark-mode .error-link:hover {
+    background-color: #81B29A;
+    color: #F4F1DE;
+}
