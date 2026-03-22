@@ -15,6 +15,7 @@ body {
     background-color: #F4F1DE;
     color: #3D405B;
     font-size: 1.6rem;
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 /* Dark Mode */
@@ -30,7 +31,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.5rem 3rem;
+    padding: 0.5rem 3rem;
     background-color: #3D405B;
 }
 
@@ -53,8 +54,8 @@ nav {
     gap: 2rem;
 }
 
-.nav-links span {
-    font-size: 1.4rem;
+.nav-links > span {
+    font-size: 1.8rem;
     color: #F4F1DE;
 }
 
@@ -78,4 +79,208 @@ nav {
 
 body.dark-mode nav {
     background-color: #2a2d3e;
+}
+
+
+.nav-logo-img {
+    height: 7rem;
+    width: auto;
+    transition: opacity 0.2s ease;
+}
+
+.nav-logo:hover .nav-logo-img {
+    content: url("/images/SlateLogo-Orange.png");
+}
+
+/* Dark/Light Theme Toggle */
+
+.theme-switch {
+    position: relative;
+    display: inline-block;
+    width: 8rem;
+    height: 3.2rem;
+}
+
+#theme-switch {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    inset: 0;
+    background-color: #F4F1DE;
+    border-radius: 999px;
+    cursor: pointer;
+}
+
+.theme-text {
+    position: absolute;
+    top: 50%;
+    right: 1.2rem;
+    transform: translateY(-50%);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #3D405B;
+    user-select: none;
+    transition: all 0.2s;
+}
+
+.knob {
+    position: absolute;
+    width: 2.4rem;
+    height: 2.4rem;
+    left: 0.4rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #3D405B;
+    border-radius: 50%;
+    transition: transform 0.2s;
+}
+
+#theme-switch:checked + .slider .knob {
+    transform: translateY(-50%) translateX(4.8rem);
+}
+
+#theme-switch:checked + .slider .theme-text {
+    left: 1.2rem;
+    right: auto;
+}
+
+/* Toggle - Dark Mode */
+
+body.dark-mode .slider {
+    background-color: #F4F1DE;
+}
+
+body.dark-mode .theme-text {
+    color: #3D405B;
+}
+
+body.dark-mode .knob {
+    background-color: #3D405B;
+}
+
+
+/* Auth Pages */
+
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: calc(100vh - 6rem);
+    padding: 3rem;
+}
+
+.auth-container h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+}
+
+.auth-container p {
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+    opacity: 0.7;
+}
+
+.auth-container form {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.form-group label {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.form-group input {
+    padding: 1rem 1.4rem;
+    border: 2px solid #3D405B;
+    border-radius: 8px;
+    font-size: 1.4rem;
+    font-family: "DM Sans", sans-serif;
+    background-color: transparent;
+    color: #3D405B;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.form-group input:focus {
+    border-color: #81B29A;
+}
+
+.auth-container button {
+    margin-top: 0.8rem;
+    padding: 1rem;
+    background-color: #3D405B;
+    color: #F4F1DE;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.6rem;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.auth-container button:hover {
+    background-color: #81B29A;
+}
+
+.auth-container a {
+    color: #3D405B;
+    font-size: 1.4rem;
+}
+
+.auth-container a:hover {
+    color: #3D405B;
+}
+
+.auth-link {
+    font-weight: 600;
+    font-size: 1.4rem;
+}
+
+.auth-link:hover {
+    color: #E07A5F;
+    text-decoration: underline;
+}
+
+.error-message {
+    background-color: #E07A5F;
+    color: white;
+    padding: 1rem 1.4rem;
+    border-radius: 8px;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Auth Pages - Dark Mode */
+
+body.dark-mode .form-group input {
+    border-color: #F4F1DE;
+    color: #F4F1DE;
+}
+
+body.dark-mode .auth-container button {
+    background-color: #81B29A;
+    color: #F4F1DE;
+}
+
+body.dark-mode .auth-container a {
+    color: #F4F1DE;
 }
