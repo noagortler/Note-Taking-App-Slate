@@ -103,3 +103,38 @@ document.querySelectorAll(".delete-btn").forEach(button => {
             });
     });
 });
+
+// delete account
+const deleteAccountBtn = document.getElementById("delete-account-btn");
+if (deleteAccountBtn) {
+    deleteAccountBtn.addEventListener("click", function() {
+        const password = document.getElementById("delete-password").value;
+
+        if (!password) {
+            alert("Please enter your password.");
+            return;
+        }
+
+        if (!confirm("Are you sure you want to delete your account? This cannot be undone.")) {
+            return;
+        }
+
+        fetch("/settings", {
+            method: "DELETE",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({password})
+        })
+        .then(res => {
+            if (res.status === 200) {
+                window.location.href = "/login";
+            } else {
+                return res.json().then(data => {
+                    alert(data.message);
+                });
+            }
+        })
+        .catch(err => {
+            console.log("Delete account error", err);
+        });
+    });
+}

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const User = require("../models/User");
+const Note = require("../models/Note");
 const bcrypt = require("bcrypt");
 
 // GET /register
@@ -40,7 +41,7 @@ exports.register = async (req, res) => {
         const newUser = new User({
             firstName: firstName.charAt(0).toUpperCase() + firstName.slice(1).toLowerCase(),
             lastName: lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase(),
-            email,
+            email: email.toLowerCase().trim(),
             password: hashedPassword
         });
 
@@ -70,4 +71,45 @@ exports.logout = (req, res, next) => {
         if (err) return next(err);
         return res.redirect("/login");
     });
+};
+
+// GET /settings
+exports.showSettings = (req, res) => {
+    res.render("settings", {error: null, user: req.user});
+};
+
+// DELETE /settings
+exports.deleteAccount = async (req, res) => {
+    try {
+        const {password} = req.body;
+
+        if (!password) {
+            return res.status(400).json({
+                message: "Password is required."
+            });
+        }
+
+        const user = await User.findById(req.user.id);
+
+        const passwordMatch = await bcrypt.compare(password, user.password);
+        if (!passwordMatch) {
+            return res.status(400).json({message: "Incorrect password."});
+        }
+
+        await Note.deleteMany({user: req.user.id});
+        await User.findByIdAndDelete(req.user.id);
+
+        req.logout((err) => {
+            if (err) return next(err);
+            return res.status(200).json({
+                message:"Account deleted successfully."
+            });
+        });
+
+    } catch (err) {
+        return res.status(500).json({
+            message: "Error deleting account",
+            error: err.message
+        });
+    }
 };

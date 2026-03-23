@@ -163,6 +163,107 @@ body.dark-mode .knob {
 }
 
 
+/* Settings Page */
+
+.settings-main {
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.settings-container {
+    width: 100%;
+    max-width: 600px;
+}
+
+.settings-container h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+}
+
+.settings-section {
+    background-color: white;
+    border-radius: 12px;
+    padding: 2.4rem;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.settings-section h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #E07A5F;
+}
+
+.settings-section p {
+    font-size: 1.4rem;
+    opacity: 0.7;
+    margin-bottom: 2rem;
+}
+
+.delete-account-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.delete-account-form input {
+    padding: 1rem 1.4rem;
+    border: 2px solid #3D405B;
+    border-radius: 8px;
+    font-size: 1.4rem;
+    font-family: "DM Sans", sans-serif;
+    background-color: transparent;
+    color: #3D405B;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.delete-account-form input:focus {
+    border-color: #E07A5F;
+}
+
+.delete-account-btn {
+    padding: 1rem;
+    background-color: #E07A5F;
+    color: #F4F1DE;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.6rem;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.delete-account-btn:hover {
+    background-color: #c9614a;
+}
+
+.settings-link {
+    font-size: 2rem;
+    color: #F4F1DE;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.settings-link:hover {
+    color: #F2CC8F;
+}
+
+/* Settings Page - Dark Mode */
+
+body.dark-mode .settings-section {
+    background-color: #2a2d3e;
+}
+
+body.dark-mode .delete-account-form input {
+    border-color: #F4F1DE;
+    color: #F4F1DE;
+}
+
 
 
 /* --- Auth Pages --- */
@@ -261,14 +362,14 @@ body.dark-mode .knob {
 }
 
 .error-message {
-    background-color: #E07A5F;
-    color: white;
+    color: #E07A5F;
     padding: 1rem 1.4rem;
     border-radius: 8px;
     font-size: 1.4rem;
     margin-bottom: 1rem;
     width: 100%;
     max-width: 400px;
+    text-align: center;
 }
 
 /* Auth Pages - Dark Mode */
@@ -279,6 +380,11 @@ body.dark-mode .form-group input {
 }
 
 body.dark-mode .auth-container button {
+    background-color: #F4F1DE;
+    color: #3D405B;
+}
+
+body.dark-mode .auth-container button:hover {
     background-color: #81B29A;
     color: #F4F1DE;
 }
@@ -1002,10 +1108,27 @@ body.dark-mode .error-link:hover {
 }
 
 
-/* Note Page - Screens < 991.98px */
+/* --- MEDIA QUERIES -- */
+
+@media (max-width: 600px) {
+
+    /* Navbar - Screens < 600px */
+
+    .nav-links span {
+        display: block;
+    }
+
+    .theme-switch {
+        display: none;
+    }
+}
+
 
 
 @media (max-width: 991.98px) {
+
+    /* Note Page - Screens < 991.98px */
+
     .note-container {
         margin: 1.5rem auto;
         max-height: calc(100vh - 26rem);
@@ -1027,10 +1150,8 @@ body.dark-mode .error-link:hover {
     }
 }
 
+    /* Edit Page - Screens < 991.98px */
 
-/* Edit Page - Screens < 991.98px */
-
-@media (max-width: 991.98px) {
     .edit-container {
         margin: 1.5rem auto;
         height: calc(100vh - 14rem);
@@ -1050,4 +1171,17 @@ body.dark-mode .error-link:hover {
         width: 100%;
         justify-content: center;
     }
-}
+
+    /* Navbar - Screens < 991.98px */
+
+    nav {
+        padding: 0.5rem 1.5rem;
+    }
+
+    .nav-logo-img {
+        height: 5rem;
+    }
+
+    .nav-links {
+        gap: 1rem;
+    }

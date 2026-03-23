@@ -19,12 +19,14 @@
         }
     </script>
     <nav>
-        <a href="/notes" class="nav-logo">
+        <a href="<%= user ? '/notes' : '/login' %>" class="nav-logo">
             <img src="/images/SlateLogo-Cream.png" alt="Slate" class="nav-logo-img">
         </a>
         <div class="nav-links">
             <% if (user) { %>
                 <span>Hi, <%= user.firstName %></span>
+
+                <a href="/settings" class="settings-link">⚙</a>
 
                 <label class="theme-switch">
                     <input type="checkbox" id="theme-switch">
@@ -37,6 +39,6 @@
                 <form action="/logout" method="POST">
                     <button type="submit">Logout</button>
                 </form>
-                <% } %>
+            <% } %>
         </div>
     </nav>

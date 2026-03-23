@@ -8,12 +8,17 @@ router.post("/register", authController.register);
 
 router.get("/login", authController.showLogin);
 router.post("/login", (req, res, next) => {
+    if (req.body.email) {
+        req.body.email = req.body.email.toLowerCase().trim();
+    }
+    
     passport.authenticate("local", (err, user, info) => {
         if (err) return next(err);
 
         if (!user) {
-            return res.status(401).json({
-                message: info?.message || "Login failed"
+            return res.render("index", {
+                error: info?.message || "Invalid email or password.",
+                user: null
             });
         }
 
@@ -26,5 +31,8 @@ router.post("/login", (req, res, next) => {
 });
 
 router.post("/logout", authController.logout);
+
+router.get("/settings", authController.showSettings);
+router.delete("/settings", authController.deleteAccount);
 
 module.exports = router;

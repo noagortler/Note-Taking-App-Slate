@@ -1,0 +1,27 @@
+<%- include('partials/header') %>
+
+<main class="settings-main">
+    <div class="settings-container">
+
+        <h1>Settings</h1>
+
+        <div class="settings-section">
+            <h2>Delete Account</h2>
+            <p>This will permanently delete your account and all your notes. This cannot be undone.</p>
+
+            <% if (error) { %>
+                <div class="error-message">
+                    <%= error %>
+                </div>
+            <% } %>
+
+            <div class="delete-account-form">
+                <input type="password" id="delete-password" placeholder="Enter your password to confirm" required>
+                <button type="button" id="delete-account-btn" class="delete-account-btn">Delete Account</button>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<%- include('partials/footer') %>
