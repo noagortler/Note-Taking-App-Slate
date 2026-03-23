@@ -1,4 +1,14 @@
-/* Base Styles */
+/* Colour Palette */
+
+/* Cream - #f4f1de
+Blue - #e07a5f
+Orange/Red - #3d405b
+Green - #81b29a
+Yellow - #f2cc8f */
+
+
+
+/* --- BASE STYLES --- */
 
 html {
     font-size: 10px;
@@ -25,7 +35,8 @@ body.dark-mode {
     color: #F4F1DE;
 }
 
-/* Navbar */
+
+/* --- NAVBAR --- */
 
 nav {
     display: flex;
@@ -34,6 +45,8 @@ nav {
     padding: 0.5rem 3rem;
     background-color: #3D405B;
 }
+
+/* Logo */
 
 .nav-logo {
     font-size: 2.4rem;
@@ -47,6 +60,8 @@ nav {
     color: #F2CC8F;
     transition: color 0.2s ease;
 }
+
+/* Nav Links */
 
 .nav-links {
     display: flex;
@@ -75,6 +90,19 @@ nav {
     color: #3D405B;
 }
 
+/* Settings Icon */
+
+.settings-link {
+    font-size: 2rem;
+    color: #F4F1DE;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.settings-link:hover {
+    color: #F2CC8F;
+}
+
 /* Navbar - Dark Mode */
 
 body.dark-mode nav {
@@ -92,7 +120,7 @@ body.dark-mode nav {
     content: url("/images/SlateLogo-Orange.png");
 }
 
-/* Dark/Light Theme Toggle */
+/* --- DARK LIGHT THEME TOGGLE --- */
 
 .theme-switch {
     position: relative;
@@ -101,12 +129,14 @@ body.dark-mode nav {
     height: 3.2rem;
 }
 
+/* Hide default checkbox */
 #theme-switch {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
+/* Pill */
 .slider {
     position: absolute;
     inset: 0;
@@ -139,6 +169,7 @@ body.dark-mode nav {
     transition: transform 0.2s;
 }
 
+/* Checked State */
 #theme-switch:checked + .slider .knob {
     transform: translateY(-50%) translateX(4.8rem);
 }
@@ -163,7 +194,8 @@ body.dark-mode .knob {
 }
 
 
-/* Settings Page */
+
+/* --- SETTIGNS PAGE ---*/
 
 .settings-main {
     padding: 3rem 2rem;
@@ -182,6 +214,8 @@ body.dark-mode .knob {
     font-weight: 700;
     margin-bottom: 3rem;
 }
+
+/* Delete Account Section */
 
 .settings-section {
     background-color: white;
@@ -242,17 +276,6 @@ body.dark-mode .knob {
     background-color: #c9614a;
 }
 
-.settings-link {
-    font-size: 2rem;
-    color: #F4F1DE;
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.settings-link:hover {
-    color: #F2CC8F;
-}
-
 /* Settings Page - Dark Mode */
 
 body.dark-mode .settings-section {
@@ -266,7 +289,7 @@ body.dark-mode .delete-account-form input {
 
 
 
-/* --- Auth Pages --- */
+/* --- AUTH PAGES (Login/Register) --- */
 
 .auth-container {
     display: flex;
@@ -288,6 +311,8 @@ body.dark-mode .delete-account-form input {
     margin-bottom: 3rem;
     opacity: 0.7;
 }
+
+/* Form */
 
 .auth-container form {
     width: 100%;
@@ -324,6 +349,8 @@ body.dark-mode .delete-account-form input {
     border-color: #81B29A;
 }
 
+/* Submit Button */
+
 .auth-container button {
     margin-top: 0.8rem;
     padding: 1rem;
@@ -341,6 +368,8 @@ body.dark-mode .delete-account-form input {
 .auth-container button:hover {
     background-color: #81B29A;
 }
+
+/* Links */
 
 .auth-container a {
     color: #3D405B;
@@ -360,6 +389,8 @@ body.dark-mode .delete-account-form input {
     color: #E07A5F;
     text-decoration: underline;
 }
+
+/* Error Message */
 
 .error-message {
     color: #E07A5F;
@@ -395,7 +426,7 @@ body.dark-mode .auth-container a {
 
 
 
-/* --- Dashboard --- */
+/* --- DASHBOARD --- */
 
 
 .dashboard-container {
@@ -477,6 +508,7 @@ body.dark-mode .auth-container a {
     color: rgba(61, 64, 91, 0.4);
 }
 
+/* Done Button */
 .done-btn {
     align-self: flex-end;
     margin-top: 1.5rem;
@@ -541,45 +573,24 @@ body.dark-mode .auth-container a {
     color: #3D405B;
 }
 
-.all-filter:hover {
+/* Filters - Hover + Active States */
+
+.all-filter:hover, .all-filter.active {
     background-color: #3D405B;
     color: #F4F1DE;
 }
-
-.notes-filter:hover {
-    background-color: #81B29A;
-    color: #3D405B;
-}
-
-.todo-filter:hover {
-    background-color: #E07A5F;
-    color: #3D405B;
-}
-
-.list-filter:hover {
-    background-color: #F2CC8F;
-    color: #3D405B;
-}
-
-
-/* Active Filter */
-
-.all-filter.active {
-    background-color: #3D405B;
-    color: #F4F1DE;
-}
-
-.notes-filter.active {
+ 
+.notes-filter:hover, .notes-filter.active {
     background-color: #81B29A;
     color: #F4F1DE;
 }
-
-.todo-filter.active {
+ 
+.todo-filter:hover, .todo-filter.active {
     background-color: #E07A5F;
     color: #F4F1DE;
 }
-
-.list-filter.active {
+ 
+.list-filter:hover, .list-filter.active {
     background-color: #F2CC8F;
     color: #3D405B;
 }
@@ -623,6 +634,8 @@ body.dark-mode .auth-container a {
     flex: 1;
 }
 
+/* Note Card Header */
+
 .note-card-header {
     display: flex;
     align-items: center;
@@ -654,6 +667,8 @@ body.dark-mode .auth-container a {
     background-color: #F2CC8F;
 }
 
+/* Note Card Body */
+
 .note-card-body {
     background-color: white;
     padding: 1.4rem;
@@ -672,6 +687,8 @@ body.dark-mode .auth-container a {
     margin-bottom: 0.8rem;
     text-align: right;
 }
+
+/* Note Card Actions */
 
 .note-card-actions {
     display: flex;
@@ -763,7 +780,7 @@ body.dark-mode .all-filter.active {
 }
 
 
-/* --- Note Page --- */
+/* --- NOTE PAGE --- */
 
 .note-main {
     padding: 3rem 1.5rem;
@@ -780,6 +797,8 @@ body.dark-mode .all-filter.active {
     flex-direction: column;
     height: calc(100vh - 20rem);
 }
+
+/* Note Header */
 
 .note-header {
     display: flex;
@@ -800,6 +819,8 @@ body.dark-mode .all-filter.active {
     color: #3D405B;
 }
 
+/* Note Content */
+
 .note-content {
     background-color: white;
     padding: 2.4rem;
@@ -815,6 +836,8 @@ body.dark-mode .all-filter.active {
     word-wrap: break-word;
 }
 
+/* Note Footer */
+
 .note-footer {
     display: flex;
     align-items: center;
@@ -829,6 +852,8 @@ body.dark-mode .all-filter.active {
     opacity: 0.6;
 }
 
+/* Note Actions */
+
 .note-actions {
     display: flex;
     gap: 1rem;
@@ -840,6 +865,8 @@ body.dark-mode .all-filter.active {
     font-size: 1.6rem;
     width: auto;
 }
+
+/* Back Button */
 
 .note-back {
     display: flex;
@@ -889,13 +916,15 @@ body.dark-mode .back-btn:hover {
 }
 
 
-/* -- Edit Page -- */
+/* -- EDIT PAGE -- */
 
 .edit-main {
     background-color: rgba(0, 0, 0, 0.15);
     min-height: calc(100vh - 6rem);
     padding: 3rem 1.5rem;
 }
+
+/* Edit Container */
 
 .edit-container {
     width: 90%;
@@ -908,6 +937,8 @@ body.dark-mode .back-btn:hover {
     flex-direction: column;
     height: calc(100vh - 14rem);
 }
+
+/* Edit Header */
 
 .edit-header {
     display: flex;
@@ -943,6 +974,8 @@ body.dark-mode .back-btn:hover {
     outline: none;
 }
 
+/* Edit Content */
+
 .edit-content {
     background-color: white;
     padding: 2.4rem;
@@ -965,6 +998,8 @@ body.dark-mode .back-btn:hover {
     overflow: hidden;
 }
 
+/* Edit Footer */
+
 .edit-footer {
     display: flex;
     align-items: center;
@@ -978,6 +1013,8 @@ body.dark-mode .back-btn:hover {
     font-size: 1.4rem;
     opacity: 0.6;
 }
+
+/* Edit Actions */
 
 .edit-actions {
     display: flex;
@@ -1056,7 +1093,7 @@ body.dark-mode #save-btn:hover {
 }
 
 
-/* --- Error Page --- */
+/* --- ERROR PAGE --- */
 
 .error-container {
     display: flex;
@@ -1079,6 +1116,8 @@ body.dark-mode #save-btn:hover {
     opacity: 0.7;
     margin-bottom: 3rem;
 }
+
+/* Back Link */
 
 .error-link {
     padding: 1rem 2.4rem;
