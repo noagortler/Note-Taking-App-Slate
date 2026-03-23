@@ -24,11 +24,24 @@ if (themeSwitch) {
 
 
 // edit note button - nav to edit page
-document.querySelectorAll(".edit-btn").forEach(button => {
-    button.addEventListener("click", function () {
+document.querySelectorAll(".note-card-actions .edit-btn, .note-actions .edit-btn").forEach(button => {
+    button.addEventListener("click", function() {
         window.location.href = `/notes/${this.id}/edit`;
     });
 });
+
+// change header color when category changes on edit page
+const categorySelect = document.getElementById("category");
+if (categorySelect) {
+    categorySelect.addEventListener("change", function() {
+        const header = document.querySelector(".edit-header");
+        header.classList.remove("notes", "todo", "list");
+
+        if (this.value === "Notes") header.classList.add("notes");
+        if (this.value === "To-Do") header.classList.add("todo");
+        if (this.value === "List") header.classList.add("list");
+    });
+}
 
 // saved edited note
 const editForm = document.getElementById("edit-form");
@@ -58,6 +71,14 @@ if (editForm) {
             .catch(err => {
                 console.log("Update error", err);
             });
+    });
+}
+
+// cancel edit
+const cancelBtn = document.getElementById("cancel-btn");
+if (cancelBtn) {
+    cancelBtn.addEventListener("click", function() {
+        window.location.href = "/notes";
     });
 }
 

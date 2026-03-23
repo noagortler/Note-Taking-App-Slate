@@ -770,6 +770,156 @@ body.dark-mode .back-btn:hover {
     color: #F4F1DE;
 }
 
+
+/* -- Edit Page -- */
+
+.edit-main {
+    background-color: rgba(0, 0, 0, 0.15);
+    min-height: calc(100vh - 6rem);
+    padding: 3rem 1.5rem;
+}
+
+.edit-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 14rem);
+}
+
+.edit-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.6rem 2rem;
+}
+
+.edit-header input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #3D405B;
+    font-size: 2rem;
+    font-family: "DM Sans", sans-serif;
+    font-weight: 700;
+    width: 60%;
+}
+
+.edit-header input::placeholder {
+    color: rgba(61, 64, 91, 0.6);
+}
+
+.edit-header select {
+    background-color: transparent;
+    border: 2px solid #3D405B;
+    border-radius: 999px;
+    padding: 0.6rem 1.4rem;
+    font-size: 1.4rem;
+    font-family: "DM Sans", sans-serif;
+    color: #3D405B;
+    cursor: pointer;
+    outline: none;
+}
+
+.edit-content {
+    background-color: white;
+    padding: 2.4rem;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.edit-content textarea {
+    width: 100%;
+    height: 100%;
+    min-height: 20rem;
+    border: none;
+    outline: none;
+    resize: none;
+    font-size: 1.6rem;
+    font-family: "DM Sans", sans-serif;
+    color: #3D405B;
+    background: transparent;
+    line-height: 1.7;
+    overflow: hidden;
+}
+
+.edit-footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: white;
+    padding: 1.4rem 2rem;
+    border-top: 1px solid rgba(61, 64, 91, 0.1);
+}
+
+.edit-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.cancel-btn {
+    background-color: transparent;
+    border: 2px solid #3D405B;
+    color: #3D405B;
+}
+
+.edit-actions .cancel-btn,
+.edit-actions .edit-btn {
+    padding: 0.8rem 2.4rem;
+    font-size: 1.6rem;
+    width: 10rem;
+    text-align: center;
+}
+
+.cancel-btn:hover {
+    background-color: #E07A5F;
+    color: #F4F1DE;
+    border-color: #E07A5F;
+}
+
+/* Edit Page - Dark Mode */
+
+body.dark-mode .edit-main {
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .edit-header input {
+    color: #F4F1DE;
+}
+
+body.dark-mode .edit-header select {
+    border-color: #F4F1DE;
+    color: #F4F1DE;
+}
+
+body.dark-mode .edit-content {
+    background-color: #2a2d3e;
+}
+
+body.dark-mode .edit-content textarea {
+    color: #F4F1DE;
+}
+
+body.dark-mode .edit-footer {
+    background-color: #2a2d3e;
+    border-top: 1px solid rgba(244, 241, 222, 0.1);
+}
+
+body.dark-mode .cancel-btn {
+    border-color: #F4F1DE;
+    color: #F4F1DE;
+}
+
+body.dark-mode .cancel-btn:hover {
+    background-color: #F4F1DE;
+    color: #3D405B;
+}
+
+
 /* --- Error Page --- */
 
 .error-container {
@@ -842,6 +992,31 @@ body.dark-mode .error-link:hover {
     }
 
     .note-actions {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+
+/* Edit Page - Screens < 991.98px */
+
+@media (max-width: 991.98px) {
+    .edit-container {
+        margin: 1.5rem auto;
+        height: calc(100vh - 14rem);
+    }
+
+    .edit-header input {
+        font-size: 1.8rem;
+    }
+
+    .edit-footer {
+        flex-direction: column;
+        gap: 1.2rem;
+        align-items: flex-end;
+    }
+
+    .edit-actions {
         width: 100%;
         justify-content: center;
     }

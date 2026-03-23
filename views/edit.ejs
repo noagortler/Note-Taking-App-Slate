@@ -1,39 +1,33 @@
 <%- include('partials/header') %>
 
-<main>
-    <div class="edit-container">
-        <h2>Edit Note</h2>
+<main class="edit-main">
+    <div class="edit-container" id="edit-form" data-id="<%= note.id %>">
 
-        <% if (error) { %>
-            <div class="error-message">
-                <%= error %>
+        <div class="edit-header <%= note.category.toLowerCase().replace('-', '') %>">
+            <input type="text" id="title" value="<%= note.title %>" required>
+            <select id="category" required>
+                <option value="Notes" <%= note.category === "Notes" ? "selected" : "" %>>Notes</option>
+                <option value="To-Do" <%= note.category === "To-Do" ? "selected" : "" %>>To-Do</option>
+                <option value="List" <%= note.category === "List" ? "selected" : "" %>>List</option>
+            </select>
+        </div>
+
+        <div class="edit-content">
+            <% if (error) { %>
+                <div class="error-message">
+                    <%= error %>
+                </div>
+            <% } %>
+            <textarea id="content" required><%= note.content %></textarea>
+        </div>
+
+        <div class="edit-footer">
+            <div class="edit-actions">
+                <button type="button" id="cancel-btn" class="edit-btn cancel-btn">Cancel</button>
+                <button type="button" id="save-btn" class="edit-btn">Save</button>
             </div>
-        <% } %>
-
-        <form id="edit-form" data-id="<%= note.id %>">
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" id="title" name="title" value="<%= note.title %>" required>
-            </div>
-
-            <div class="form-group">
-                <label for="category">Category</label>
-                <select id="category" name="category" required>
-                    <option value="">Select a category</option>
-                    <option value="Notes" <%= note.category === "Notes" ? "selected" : "" %>>Notes</option>
-                    <option value="To-Do" <%= note.category === "To-Do" ? "selected" : "" %>>To-Do</option>
-                    <option value="List" <%= note.category === "List" ? "selected" : "" %>>List</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="content">Content</label>
-                <textarea id="content" name="content" required><%= note.content %></textarea>
-            </div>
-
-            <button type="button" id="save-btn">Save Changes</button>
-            <a href="/notes">Cancel</a>
-        </form>
+        </div>
+        
     </div>
 </main>
 
