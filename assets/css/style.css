@@ -644,6 +644,132 @@ body.dark-mode .all-filter.active {
     color: #3D405B;
 }
 
+
+/* --- Note Page --- */
+
+.note-main {
+    padding: 3rem 1.5rem;
+}
+
+.note-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 20rem);
+}
+
+.note-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.6rem 2rem;
+}
+
+.note-header h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #3D405B;
+}
+
+.note-category-badge {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #3D405B;
+}
+
+.note-content {
+    background-color: white;
+    padding: 2.4rem;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.note-content p {
+    font-size: 1.6rem;
+    color: #3D405B;
+    line-height: 1.7;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.note-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    padding: 1.4rem 2rem;
+    border-top: 1px solid rgba(61, 64, 91, 0.1);
+}
+
+.note-footer .note-date {
+    font-size: 1.4rem;
+    opacity: 0.6;
+}
+
+.note-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.note-actions .edit-btn,
+.note-actions .delete-btn {
+    padding: 0.8rem 2.4rem;
+    font-size: 1.6rem;
+    width: auto;
+}
+
+.note-back {
+    display: flex;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.back-btn {
+    padding: 1rem 2.4rem;
+    background-color: #3D405B;
+    color: #F4F1DE;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.back-btn:hover {
+    background-color: #81B29A;
+    color: #3D405B;
+}
+
+/* Note Page - Dark Mode */
+
+body.dark-mode .note-content {
+    background-color: #2a2d3e;
+}
+
+body.dark-mode .note-content p {
+    color: #F4F1DE;
+}
+
+body.dark-mode .note-footer {
+    background-color: #2a2d3e;
+    border-top: 1px solid rgba(244, 241, 222, 0.1);
+}
+
+body.dark-mode .back-btn {
+    background-color: #F4F1DE;
+    color: #3D405B;
+}
+
+body.dark-mode .back-btn:hover {
+    background-color: #81B29A;
+    color: #F4F1DE;
+}
+
 /* --- Error Page --- */
 
 .error-container {
@@ -693,4 +819,30 @@ body.dark-mode .error-link {
 body.dark-mode .error-link:hover {
     background-color: #81B29A;
     color: #F4F1DE;
+}
+
+
+/* Note Page - Screens < 991.98px */
+
+
+@media (max-width: 991.98px) {
+    .note-container {
+        margin: 1.5rem auto;
+        max-height: calc(100vh - 26rem);
+    }
+
+    .note-header h1 {
+        font-size: 1.8rem;
+    }
+
+    .note-footer {
+        flex-direction: column;
+        gap: 1.2rem;
+        align-items: flex-start;
+    }
+
+    .note-actions {
+        width: 100%;
+        justify-content: center;
+    }
 }

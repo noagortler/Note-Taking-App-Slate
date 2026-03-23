@@ -58,7 +58,7 @@ exports.getAllNotes = async (req, res) => {
 
 exports.getNoteById = async (req, res) => {
     try {
-        const { id } = req.params;
+        const {id} = req.params;
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
             return res.status(400).json({
@@ -83,7 +83,11 @@ exports.getNoteById = async (req, res) => {
             updatedAt: formatDate(note.updatedAt)
         };
 
-        return res.status(200).json(response);
+        return res.render("note", {
+            note: response,
+            user: req.user || null
+        });
+
     } catch (err) {
         return res.status(500).json({
             message: "Error retrieving note",

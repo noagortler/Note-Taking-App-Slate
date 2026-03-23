@@ -1,0 +1,30 @@
+<%- include('partials/header') %>
+
+<main class = note-main>
+    <div class="note-container">
+
+        <div class="note-header <%= note.category.toLowerCase().replace('-', '') %>">
+            <h1><%= note.title %></h1>
+            <span class="note-category-badge"><%= note.category %></span>
+        </div>
+
+        <div class="note-content">
+            <p><%= note.content %></p>
+        </div>
+
+        <div class="note-footer">
+            <span class="note-date">Created at <%= note.createdAt %></span>
+            <div class="note-actions">
+                <button class="edit-btn" id="<%= note.id %>">Edit</button>
+                <button class="delete-btn" id="<%= note.id %>">Delete</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="note-back">
+        <a href="/notes" class="back-btn">Back to your Slate</a>
+    </div>
+</main>
+
+<%- include('partials/footer') %>
