@@ -145,6 +145,7 @@ exports.createNote = async (req, res) => {
         }
 
         const newNote = new Note({ title, content, category, user: req.user.id });
+        await newNote.save();
 
         return res.redirect("/notes");
 
