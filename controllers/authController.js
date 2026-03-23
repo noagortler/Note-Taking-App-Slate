@@ -4,6 +4,9 @@ const bcrypt = require("bcrypt");
 
 // GET /register
 exports.showRegister = (req, res) => {
+    if (req.isAuthenticated()) {
+        return res.redirect("/notes");
+    }
     res.render("register", {error: null, user: req.user || null});
 };
 
@@ -55,6 +58,9 @@ exports.register = async (req, res) => {
 
 // GET /login
 exports.showLogin = (req, res) => {
+    if (req.isAuthenticated()) {
+        return res.redirect("/notes");
+    }
     res.render("index", {error: null, user: req.user || null});
 };
 

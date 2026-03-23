@@ -559,6 +559,14 @@ body.dark-mode .auth-container a {
     color: #3D405B;
 }
 
+.note-card-date {
+    font-size: 1.2rem;
+    opacity: 0.5;
+    display: block;
+    margin-bottom: 0.8rem;
+    text-align: right;
+}
+
 .note-card-actions {
     display: flex;
     justify-content: center;
@@ -611,6 +619,10 @@ body.dark-mode .note-card-body {
 
 body.dark-mode .note-card-body p {
     color: #F4F1DE;
+}
+
+body.dark-mode .note-card-date {
+    color:  rgba(244, 241, 222, 0.6);
 }
 
 body.dark-mode .note-card-actions {
@@ -850,21 +862,20 @@ body.dark-mode .back-btn:hover {
 .edit-footer {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
     background-color: white;
     padding: 1.4rem 2rem;
     border-top: 1px solid rgba(61, 64, 91, 0.1);
 }
 
+.edit-date {
+    font-size: 1.4rem;
+    opacity: 0.6;
+}
+
 .edit-actions {
     display: flex;
     gap: 1rem;
-}
-
-.cancel-btn {
-    background-color: transparent;
-    border: 2px solid #3D405B;
-    color: #3D405B;
 }
 
 .edit-actions .cancel-btn,
@@ -873,12 +884,20 @@ body.dark-mode .back-btn:hover {
     font-size: 1.6rem;
     width: 10rem;
     text-align: center;
+    background-color: transparent;
+    border: 2px solid #3D405B;
+    color: #3D405B;
 }
 
 .cancel-btn:hover {
-    background-color: #E07A5F;
+    background-color: #3D405B;
     color: #F4F1DE;
-    border-color: #E07A5F;
+}
+
+#save-btn:hover {
+    background-color: #81B29A;
+    color: #F4F1DE;
+    border-color:#81B29A;
 }
 
 /* Edit Page - Dark Mode */
@@ -914,9 +933,20 @@ body.dark-mode .cancel-btn {
     color: #F4F1DE;
 }
 
+body.dark-mode #save-btn {
+    border-color: #F4F1DE;
+    color: #F4F1DE;
+}
+
 body.dark-mode .cancel-btn:hover {
     background-color: #F4F1DE;
     color: #3D405B;
+}
+
+body.dark-mode #save-btn:hover {
+    background-color: #81B29A;
+    color: #F4F1DE;
+    border-color:#81B29A;
 }
 
 

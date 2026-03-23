@@ -1,16 +1,30 @@
 const mongoose = require("mongoose");
 const Note = require("../models/Note");
 
-function formatDate(dateValue) {
+function formatDate(dateValue, includeTime) {
     if (!dateValue) return null;
-    return new Date(dateValue).toISOString().split("T")[0];
+    
+    const date = new Date(dateValue);
+    const dateStr = date.toISOString().split("T")[0];
+
+    if (!includeTime) return dateStr;
+
+    let hours = date.getHours();
+    const minutes = date.getMinutes();
+    const ampm = hours >= 12 ? "pm" : "am";
+    hours = hours % 12;
+    if (hours === 0) hours = 12;
+
+    const minutesStr = minutes < 10 ? "0" + minutes : minutes;
+
+    return dateStr + " at " + hours + ":" + minutesStr + " " + ampm;
 }
 
 // GET /notes
 
 exports.getAllNotes = async (req, res) => {
     try {
-        const { category } = req.query;
+        const {category} = req.query;
         const validCategories = ["Notes", "To-Do", "List"];
 
         const filter = {};
@@ -35,7 +49,8 @@ exports.getAllNotes = async (req, res) => {
                 content: note.content,
                 category: note.category,
                 createdAt: formatDate(note.createdAt),
-                updatedAt: formatDate(note.updatedAt)
+                updatedAt: formatDate(note.updatedAt),
+                date: formatDate(note.updatedAt > note.createdAt ? note.updatedAt : note.createdAt, false)
             }))
         };
 
@@ -79,8 +94,10 @@ exports.getNoteById = async (req, res) => {
             title: note.title,
             content: note.content,
             category: note.category,
-            createdAt: formatDate(note.createdAt),
-            updatedAt: formatDate(note.updatedAt)
+            createdAt: formatDate(note.createdAt, true),
+            updatedAt: formatDate(note.updatedAt, true),
+            dateLabel: note.updatedAt > note.createdAt ? "Updated at" : "Created at",
+            dateValue: note.updatedAt > note.createdAt ? formatDate(note.updatedAt, true) : formatDate(note.createdAt, true)
         };
 
         return res.render("note", {
@@ -164,7 +181,11 @@ exports.getEditNote = async (req, res) => {
                 id: note._id,
                 title: note.title,
                 content: note.content,
-                category: note.category
+                category: note.category,
+                createdAt: formatDate(note.createdAt, true),
+                updatedAt: formatDate(note.updatedAt, true),
+                dateLabel: note.updatedAt > note.createdAt ? "Updated at" : "Created at",
+                dateValue: note.updatedAt > note.createdAt ? formatDate(note.updatedAt, true) : formatDate(note.createdAt, true)
             },
 
             error: null,
